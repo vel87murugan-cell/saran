@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maha Saran | Engineering & Software Portfolio</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .code-block {
+            background: #0f172a;
+            color: #38bdf8;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen font-sans">
+
+    <!-- PASSWORD LOGIN GATE SECTION -->
+    <div id="loginOverlay" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/90 backdrop-blur-md p-4">
+        <div class="glass-card p-8 rounded-2xl max-w-md w-full shadow-2xl border border-emerald-500/20 text-center">
+            <div class="w-16 h-16 bg-emerald-500/10 text-emerald-400 rounded-2xl flex items-center justify-center mx-auto mb-4 text-2xl">
+                <i class="fa-solid fa-lock"></i>
+            </div>
+            <h2 class="text-2xl font-bold mb-2 text-white">Restricted Portfolio Access</h2>
+            <p class="text-slate-400 text-sm mb-6">Enter your access password to view Maha Saran's engineering portfolio.</p>
+            
+            <form onsubmit="handleLogin(event)" class="space-y-4">
+                <input type="password" id="passwordInput" placeholder="Enter access password" required
+                    class="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-xl focus:outline-none focus:border-emerald-500 text-center text-white placeholder-slate-500">
+                <button type="submit" class="w-full py-3 bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold rounded-xl transition-all shadow-lg shadow-emerald-500/20">
+                    Access Portfolio
+                </button>
+                <p id="errorMsg" class="text-red-400 text-xs hidden">Incorrect password. Please enter the correct access password.</p>
+            </form>
+        </div>
+    </div>
+
+    <!-- MAIN PORTFOLIO CONTENT (Hidden until login) -->
+    <div id="portfolioContent" class="hidden opacity-0 transition-opacity duration-700">
+        <!-- Header -->
+        <header class="border-b border-slate-800 bg-slate-900/50 sticky top-0 z-40 backdrop-blur-md">
+            <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-emerald-500 text-slate-950 font-black text-xl rounded-xl flex items-center justify-center shadow-lg shadow-emerald-500/20">
+                        MS
+                    </div>
+                    <div>
+                        <h1 class="font-bold text-lg text-white">Maha Saran</h1>
+                        <p class="text-xs text-emerald-400 font-medium">Young Robotics & Software Engineer</p>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <span class="px-3 py-1 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 rounded-full text-xs font-semibold flex items-center gap-1.5">
+                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> Portfolio Active
+                    </span>
+                    <button onclick="logout()" class="text-slate-400 hover:text-white text-sm"><i class="fa-solid fa-right-from-bracket"></i> Lock</button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Hero Intro -->
+        <section class="max-w-6xl mx-auto px-6 pt-12 pb-8">
+            <div class="glass-card p-8 rounded-3xl relative overflow-hidden">
+                <div class="absolute right-0 top-0 w-96 h-96 bg-emerald-500/5 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="max-w-3xl relative z-10">
+                    <span class="text-emerald-400 text-xs font-bold uppercase tracking-widest bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20">Featured Profile</span>
+                    <h2 class="text-4xl font-extrabold mt-4 mb-3 text-white">Engineering Systems & Microcontroller Portfolio</h2>
+                    <p class="text-slate-300 text-base leading-relaxed">
+                        Welcome to my professional portfolio. Here you will find documented hardware implementations, complete C++ firmware architectures for ESP32 microcontrollers, IoT web dashboards, and competitive innovation projects.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects & Achievements Timeline Grid -->
+        <main class="max-w-6xl mx-auto px-6 pb-20 space-y-12">
+
+            <!-- COMPETITIONS & ACHIEVEMENTS TIMELINE -->
+            <div class="glass-card rounded-3xl p-8 border border-amber-500/30 relative shadow-xl">
+                <div class="flex items-center space-x-4 mb-8">
+                    <div class="w-12 h-12 bg-amber-500/20 text-amber-400 rounded-2xl flex items-center justify-center text-2xl">
+                        <i class="fa-solid fa-timeline"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-white">Competition & Exhibition Timeline</h3>
+                        <p class="text-sm text-slate-400">Chronological Progression of National Competitions and Innovation Showcases</p>
+                    </div>
+                </div>
+
+                <!-- Timeline Container -->
+                <div class="relative border-l-2 border-amber-500/30 ml-4 pl-6 space-y-8">
+                    
+                    <!-- Timeline Item 1 -->
+                    <div class="relative">
+                        <div class="absolute -left-[31px] top-1 w-4 h-4 rounded-full bg-amber-400 ring-4 ring-slate-950"></div>
+                        <span class="text-xs text-amber-400 font-bold uppercase tracking-wider">6th Standard</span>
+                        <h4 class="text-lg font-bold text-white mt-1">Robotica National Robotics Competition</h4>
+                        <p class="text-slate-300 text-xs leading-relaxed mt-1">
+                            Competed in the prestigious national-level robotics competition and secured <strong class="text-amber-400">Runner-Up (2nd Place)</strong>.
+                        </p>
+                    </div>
+
+                    <!-- Timeline Item 2 -->
+                    <div class="relative">
+                        <div class="absolute -left-[31px] top-1 w-4 h-4 rounded-full bg-blue-400 ring-4 ring-slate-950"></div>
+                        <span class="text-xs text-blue-400 font-bold uppercase tracking-wider">7th Standard</span>
+                        <h4 class="text-lg font-bold text-white mt-1">Techno Talentum</h4>
+                        <p class="text-slate-300 text-xs leading-relaxed mt-1">
+                            Actively participated, showcasing technical skills and engineering concepts.
+                        </p>
+                    </div>
+
+                    <!-- Timeline Item 3 -->
+                    <div class="relative">
+                        <div class="absolute -left-[31px] top-1 w-4 h-4 rounded-full bg-purple-400 ring-4 ring-slate-950"></div>
+                        <span class="text-xs text-purple-400 font-bold uppercase tracking-wider">7th Standard</span>
+                        <h4 class="text-lg font-bold text-white mt-1">Roboroarz</h4>
+                        <p class="text-slate-300 text-xs leading-relaxed mt-1">
+                            Participated in robotics challenge highlighting practical hardware assembly and prototyping.
+                        </p>
+                    </div>
+
+                    <!-- Timeline Item 4 -->
+                    <div class="relative">
+                        <div class="absolute -left-[31px] top-1 w-4 h-4 rounded-full bg-emerald-400 ring-4 ring-slate-950"></div>
+                        <span class="text-xs text-emerald-400 font-bold uppercase tracking-wider">7th Standard</span>
+                        <h4 class="text-lg font-bold text-white mt-1">Kalam Award</h4>
+                        <p class="text-slate-300 text-xs leading-relaxed mt-1">
+                            Participated in innovation-focused recognition celebrating young engineering talent.
+                        </p>
+                    </div>
+
+                    <!-- Timeline Item 5 -->
+                    <div class="relative">
+                        <div class="absolute -left-[31px] top-1 w-4 h-4 rounded-full bg-cyan-400 ring-4 ring-slate-950"></div>
+                        <span class="text-xs text-cyan-400 font-bold uppercase tracking-wider">7th Standard</span>
+                        <h4 class="text-lg font-bold text-white mt-1">Viksit Bharat Government Competition</h4>
+                        <p class="text-slate-300 text-xs leading-relaxed mt-1">
+                            Participated in official government innovation initiatives presenting smart systems.
+                        </p>
+                    </div>
+
+                    <!-- Timeline Item 6 -->
+                    <div class="relative">
+                        <div class="absolute -left-[31px] top-1 w-4 h-4 rounded-full bg-amber-400 ring-4 ring-slate-950"></div>
+                        <span class="text-xs text-amber-400 font-bold uppercase tracking-wider">8th Standard</span>
+                        <h4 class="text-lg font-bold text-white mt-1">Innochamp State Competition</h4>
+                        <p class="text-slate-300 text-xs leading-relaxed mt-1">
+                            Competed in state-level innovation showcase displaying advanced project models.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- PROJECT 1: AGRIBOT (Currently Doing) -->
+            <div class="glass-card rounded-3xl p-8 border-2 border-emerald-500/40 relative shadow-xl shadow-emerald-500/5">
+                <div class="absolute top-6 right-6 flex items-center space-x-2">
+                    <span class="px-3 py-1 bg-amber-500/10 text-amber-400 border border-amber-500/30 text-xs font-bold rounded-full uppercase tracking-wider flex items-center gap-1.5">
+                        <i class="fa-solid fa-fire-flame-curved text-amber-400"></i> Currently Doing
+                    </span>
+                </div>
+
+                <div class="flex items-center space-x-4 mb-6">
+                    <div class="w-12 h-12 bg-emerald-500/20 text-emerald-400 rounded-2xl flex items-center justify-center text-2xl">
+                        <i class="fa-solid fa-tractor"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-white">Autonomous Agribot Smart Farming Rover</h3>
+                        <p class="text-sm text-slate-400">Domain: Precision Agriculture, Embedded Robotics & Wi-Fi Web Automation</p>
+                    </div>
+                </div>
+
+                <!-- Interactive View Tabs -->
+                <div class="flex space-x-2 mb-6 border-b border-slate-800 pb-3">
+                    <button onclick="switchTab('agribot', 'overview')" id="btn-agribot-overview" class="px-4 py-2 bg-emerald-500 text-slate-950 font-bold rounded-xl text-xs transition-all shadow-md">Overview & Working Principle</button>
+                    <button onclick="switchTab('agribot', 'code')" id="btn-agribot-code" class="px-4 py-2 bg-slate-900 text-slate-300 hover:text-white font-bold rounded-xl text-xs transition-all border border-slate-800">Full Firmware Code</button>
+                </div>
+
+                <!-- Tab Content: Overview -->
+                <div id="tab-agribot-overview" class="grid md:grid-cols-2 gap-6 mb-2">
+                    <div>
+                        <h4 class="text-sm font-semibold text-emerald-400 uppercase tracking-wider mb-2">Project Overview & Scope</h4>
+                        <p class="text-slate-300 text-sm leading-relaxed mb-4">
+                            Developing a smart agricultural rover system powered by dual ESP32 microcontrollers. Designed to automate field navigation, tilling, soil watering, and mechanical weed uprooting without requiring heavy AI hardware or external apps. Controlled directly through a custom responsive mobile browser dashboard.
+                        </p>
+                        <h4 class="text-sm font-semibold text-emerald-400 uppercase tracking-wider mb-2">Working Principle</h4>
+                        <p class="text-slate-300 text-sm leading-relaxed">
+                            The ESP32 hosts an onboard Wi-Fi Access Point running a lightweight C++ web server. Commands sent from a smartphone browser execute asynchronous HTTP endpoints (`/control?cmd=...`), instantly triggering L298N motor driver channels, water pump relays, and servo/motor-driven mechanical uprooting actuators.
+                        </p>
+                    </div>
+                    <div>
+                        <h4 class="text-sm font-semibold text-emerald-400 uppercase tracking-wider mb-2">Tech Stack & Hardware</h4>
+                        <ul class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-slate-900 border border-slate-700 text-xs rounded-lg text-slate-300">ESP32 DevKit V1</span>
+                            <span class="px-3 py-1 bg-slate-900 border border-slate-700 text-xs rounded-lg text-slate-300">C++ / Arduino IDE</span>
+                            <span class="px-3 py-1 bg-slate-900 border border-slate-700 text-xs rounded-lg text-slate-300">L298N Motor Driver</span>
+                            <span class="px-3 py-1 bg-slate-900 border border-slate-700 text-xs rounded-lg text-slate-300">HTML / JavaScript Web Server</span>
+                            <span class="px-3 py-1 bg-slate-900 border border-slate-700 text-xs rounded-lg text-slate-300">ArduinoOTA Wireless Update</span>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Tab Content: Full Code -->
+                <div id="tab-agribot-code" class="hidden">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-xs text-slate-400 font-mono">agribot_master_firmware.ino</span>
+                        <button onclick="copyCode('code-agribot')" class="text-xs bg-slate-900 hover:bg-slate-800 text-emerald-400 px-3 py-1 rounded-lg border border-slate-700"><i class="fa-regular fa-copy"></i> Copy Code</button>
+                    </div>
+                    <div class="code-block p-4 rounded-xl text-xs overflow-x-auto border border-slate-800 max-h-96">
+<pre><code id="code-agribot">/*
+  Project: Autonomous Agribot Smart Farming Rover
+  Controller: ESP32 DevKit V1
+  Author: Maha Saran
+*/
+#include &lt;WiFi.h&gt;
+#include &lt;WebServer.h&gt;
+#include &lt;ArduinoOTA.h&gt;
+
+const char* ssid = "Agribot_Rover_AP";
+const char* password = "agribot1234";
+WebServer server(80);
+
+const int IN1 = 4;
+const int IN2 = 16;
+const int IN3 = 17;
+const int IN4 = 5;
+const int UPROOT_IN1 = 22;
+const int UPROOT_IN2 = 23;
+
+void handleRoot() {
+  String html = "&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;&lt;title&gt;Agribot Dashboard&lt;/title&gt;";
+  html += "&lt;meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"&gt;";
+  html += "&lt;style&gt;body{background:#0f172a;color:#fff;font-family:sans-serif;text-align:center;padding:20px;}";
+  html += "button{background:#10b981;color:#0f172a;border:none;padding:15px 25px;margin:10px;font-size:16px;font-weight:bold;border-radius:12px;cursor:pointer;}&lt;/style&gt;";
+  html += "&lt;/head&gt;&lt;body&gt;";
+  html += "&lt;h1&gt;Agribot Control Center&lt;/h1&gt;";
+  html += "&lt;br&gt;&lt;button onclick=\"fetch('/control?cmd=forward')\"&gt;FORWARD&lt;/button&gt;&lt;br&gt;";
+  html += "&lt;button onclick=\"fetch('/control?cmd=left')\"&gt;LEFT&lt;/button&gt; ";
+  html += "&lt;button onclick=\"fetch('/control?cmd=stop')\"&gt;STOP&lt;/button&gt; ";
+  html += "&lt;button onclick=\"fetch('/control?cmd=right')\"&gt;RIGHT&lt;/button&gt;&lt;br&gt;";
+  html += "&lt;button onclick=\"fetch('/control?cmd=reverse')\"&gt;REVERSE&lt;/button&gt;&lt;br&gt;&lt;br&gt;";
+  html += "&lt;button style=\"background:#f59e0b;\" onclick=\"fetch('/control?cmd=uproot')\"&gt;TRIGGER UPROOT CLAW&lt;/button&gt;";
+  html += "&lt;/body&gt;&lt;/html&gt;";
+  server.send(200, "text/html", html);
+}
+
+void handleControl() {
+  String cmd = server.arg("cmd");
+  if (cmd == "forward") {
+    digitalWrite(IN1, HIGH); digitalWrite(IN2, LOW);
+    digitalWrite(IN3, HIGH); digitalWrite(IN4, LOW);
+  } else if (cmd == "uproot") {
+    digitalWrite(UPROOT_IN1, HIGH); digitalWrite(UPROOT_IN2, LOW);
+    delay(1500);
+    digitalWrite(UPROOT_IN1, LOW); digitalWrite(UPROOT_IN2, HIGH);
+    delay(1500);
+    digitalWrite(UPROOT_IN1, LOW); digitalWrite(UPROOT_IN2, LOW);
+  }
+  server.send(200, "text/plain", "OK: " + cmd);
+}
+
+void setup() {
+  Serial.begin(115200);
+  pinMode(IN1, OUTPUT); pinMode(IN2, OUTPUT);
+  pinMode(IN3, OUTPUT); pinMode(IN4, OUTPUT);
+  pinMode(UPROOT_IN1, OUTPUT); pinMode(UPROOT_IN2, OUTPUT);
+  WiFi.softAP(ssid, password);
+  ArduinoOTA.begin();
+  server.on("/", handleRoot);
+  server.on("/control", handleControl);
+  server.begin();
+}
+
+void loop() {
+  server.handleClient();
+  ArduinoOTA.handle();
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PROJECT 2: FILTERIQ -->
+            <div class="glass-card rounded-3xl p-8 border border-slate-800">
+                <div class="flex items-center space-x-4 mb-6">
+                    <div class="w-12 h-12 bg-blue-500/20 text-blue-400 rounded-2xl flex items-center justify-center text-2xl">
+                        <i class="fa-solid fa-filter-circle-dollar"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-white">FILTERIQ – Smart Greywater Recycling System</h3>
+                        <p class="text-sm text-slate-400">Domain: IoT, Embedded Systems & Environmental Engineering</p>
+                    </div>
+                </div>
+
+                <!-- Tabs -->
+                <div class="flex space-x-2 mb-6 border-b border-slate-800 pb-3">
+                    <button onclick="switchTab('filteriq', 'overview')" id="btn-filteriq-overview" class="px-4 py-2 bg-blue-500 text-slate-950 font-bold rounded-xl text-xs transition-all shadow-md">Overview & Working Principle</button>
+                    <button onclick="switchTab('filteriq', 'code')" id="btn-filteriq-code" class="px-4 py-2 bg-slate-900 text-slate-300 hover:text-white font-bold rounded-xl text-xs transition-all border border-slate-800">Full Firmware Code</button>
+                </div>
+
+                <!-- Overview Tab -->
+                <div id="tab-filteriq-overview" class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="text-sm font-semibold text-blue-400 uppercase tracking-wider mb-2">Project Overview & Working Principle</h4>
+                        <p class="text-slate-300 text-sm leading-relaxed mb-4">
+                            Engineered an automated greywater filtration and recycling system featuring real-time sensor telemetry and Over-The-Air (OTA) firmware updates. Water flows through multi-stage media (activated carbon and sand) monitored by digital flow sensors and float switches, automatically regulating booster pump relays to ensure safe recirculation.
+                        </p>
+                    </div>
+                    <div>
+                        <h4 class="text-sm font-semibold text-blue-400 uppercase tracking-wider mb-2">Tech Stack & Architecture</h4>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-slate-900 border border-slate-700 text-xs rounded-lg text-slate-300">ESP32 Wi-Fi</span>
+                            <span class="px-3 py-1 bg-slate-900 border border-slate-700 text-xs rounded-lg text-slate-300">C++ / ArduinoOTA</span>
+                            <span class="px-3 py-1 bg-slate-900 border border-slate-700 text-xs rounded-lg text-slate-300">Flow Sensors & Relays</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Code Tab -->
+                <div id="tab-filteriq-code" class="hidden">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-xs text-slate-400 font-mono">filteriq_iot_system.ino</span>
+                        <button onclick="copyCode('code-filteriq')" class="text-xs bg-slate-900 hover:bg-slate-800 text-blue-400 px-3 py-1 rounded-lg border border-slate-700"><i class="fa-regular fa-copy"></i> Copy Code</button>
+                    </div>
+                    <div class="code-block p-4 rounded-xl text-xs overflow-x-auto border border-slate-800 max-h-96">
+<pre><code id="code-filteriq">/*
+  Project: FILTERIQ – Smart Greywater Recycling System
+  Controller: ESP32
+  Author: Maha Saran
+*/
+#include &lt;WiFi.h&gt;
+#include &lt;WebServer.h&gt;
+#include &lt;ArduinoOTA.h&gt;
+
+const char* ssid = "FilterIQ_Network";
+const char* password = "filteriq_secure";
+WebServer server(80);
+
+const int FLOW_SENSOR_PIN = 14;
+const int PUMP_RELAY_PIN = 26;
+volatile int pulseCount = 0;
+float calibrationFactor = 4.5;
+float flowRate = 0.0;
+unsigned long oldTime = 0;
+
+void IRAM_ATTR pulseCounter() { pulseCount++; }
+
+void handleTelemetry() {
+  if ((millis() - oldTime) > 1000) {
+    detachInterrupt(FLOW_SENSOR_PIN);
+    flowRate = ((1000.0 / (millis() - oldTime)) * pulseCount) / calibrationFactor;
+    oldTime = millis();
+    pulseCount = 0;
+    attachInterrupt(FLOW_SENSOR_PIN, pulseCounter, FALLING);
+  }
+  String json = "{ \"system\": \"FILTERIQ\", \"flow_rate_L_min\": " + String(flowRate) + " }";
+  server.send(200, "application/json", json);
+}
+
+void setup() {
+  Serial.begin(115200);
+  pinMode(FLOW_SENSOR_PIN, INPUT_PULLUP);
+  pinMode(PUMP_RELAY_PIN, OUTPUT);
+  attachInterrupt(FLOW_SENSOR_PIN, pulseCounter, FALLING);
+  WiFi.begin(ssid, password);
+  ArduinoOTA.begin();
+  server.on("/data", handleTelemetry);
+  server.begin();
+}
+
+void loop() {
+  server.handleClient();
+  ArduinoOTA.handle();
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PROJECT 3: ROBLOX GAME -->
+            <div class="glass-card rounded-3xl p-8 border border-slate-800">
+                <div class="flex items-center space-x-4 mb-6">
+                    <div class="w-12 h-12 bg-purple-500/20 text-purple-400 rounded-2xl flex items-center justify-center text-2xl">
+                        <i class="fa-solid fa-gamepad"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-white">Custom Coin Collector & Launch Pad 3D Game</h3>
+                        <p class="text-sm text-slate-400">Domain: Game Development & Software Logic</p>
+                    </div>
+                </div>
+
+                <!-- Tabs -->
+                <div class="flex space-x-2 mb-6 border-b border-slate-800 pb-3">
+                    <button onclick="switchTab('roblox', 'overview')" id="btn-roblox-overview" class="px-4 py-2 bg-purple-500 text-slate-950 font-bold rounded-xl text-xs transition-all shadow-md">Overview & Mechanics</button>
+                    <button onclick="switchTab('roblox', 'code')" id="btn-roblox-code" class="px-4 py-2 bg-slate-900 text-slate-300 hover:text-white font-bold rounded-xl text-xs transition-all border border-slate-800">Luau Script Code</button>
+                </div>
+
+                <!-- Overview Tab -->
+                <div id="tab-roblox-overview" class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="text-sm font-semibold text-purple-400 uppercase tracking-wider mb-2">Overview & Working Principle</h4>
+                        <p class="text-slate-300 text-sm leading-relaxed mb-4">
+                            Designed, programmed, and published an interactive 3D arcade game inside Roblox Studio. Utilized custom Luau scripts to manage player states, score tracking loops, and physics-based launch pad event triggers.
+                        </p>
+                    </div>
+                    <div>
+                        <h4 class="text-sm font-semibold text-purple-400 uppercase tracking-wider mb-2">Tech Stack & Scripting</h4>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-slate-900 border border-slate-700 text-xs rounded-lg text-slate-300">Luau Scripting</span>
+                            <span class="px-3 py-1 bg-slate-900 border border-slate-700 text-xs rounded-lg text-slate-300">Roblox Studio</span>
+                            <span class="px-3 py-1 bg-slate-900 border border-slate-700 text-xs rounded-lg text-slate-300">Physics & Event Handlers</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Code Tab -->
+                <div id="tab-roblox-code" class="hidden">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-xs text-slate-400 font-mono">LaunchPad_CoinCollector.luau</span>
+                        <button onclick="copyCode('code-roblox')" class="text-xs bg-slate-900 hover:bg-slate-800 text-purple-400 px-3 py-1 rounded-lg border border-slate-700"><i class="fa-regular fa-copy"></i> Copy Code</button>
+                    </div>
+                    <div class="code-block p-4 rounded-xl text-xs overflow-x-auto border border-slate-800 max-h-96">
+<pre><code id="code-roblox">--[[
+  Project: Custom Coin Collector & Launch Pad 3D Game
+  Environment: Roblox Studio (Luau)
+  Author: Maha Saran
+]]--
+
+local coin = script.Parent
+local launchPad = workspace:WaitForChild("LaunchPad")
+local launchForce = 120
+
+local function onCoinTouch(hit)
+	local character = hit.Parent
+	local humanoid = character:FindFirstChildOfClass("Humanoid")
+	if humanoid then
+		local player = game.Players:GetPlayerFromCharacter(character)
+		if player then
+			local stats = player:FindFirstChild("leaderstats")
+			if stats then
+				local score = stats:FindFirstChild("Coins")
+				if score then score.Value += 1 end
+			end
+		end
+		coin:Destroy()
+	end
+end
+coin.Touched:Connect(onCoinTouch)
+
+local function onLaunchPadTouch(hit)
+	local character = hit.Parent
+	local rootPart = character:FindFirstChild("HumanoidRootPart")
+	if rootPart then
+		rootPart.AssemblyLinearVelocity = Vector3.new(0, launchForce, 0)
+	end
+end
+launchPad.Touched:Connect(onLaunchPadTouch)</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PROJECT 4: SCIENCE DEMO -->
+            <div class="glass-card rounded-3xl p-8 border border-slate-800">
+                <div class="flex items-center space-x-4 mb-6">
+                    <div class="w-12 h-12 bg-amber-500/20 text-amber-400 rounded-2xl flex items-center justify-center text-2xl">
+                        <i class="fa-solid fa-atom"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-white">Class 7 Science Teaching Aid: Measurement of Time & Motion</h3>
+                        <p class="text-sm text-slate-400">Domain: STEM Education & Physics Demonstration</p>
+                    </div>
+                </div>
+
+                <!-- Tabs -->
+                <div class="flex space-x-2 mb-6 border-b border-slate-800 pb-3">
+                    <button onclick="switchTab('science', 'overview')" id="btn-science-overview" class="px-4 py-2 bg-amber-500 text-slate-950 font-bold rounded-xl text-xs transition-all shadow-md">Overview & Pedagogy</button>
+                    <button onclick="switchTab('science', 'code')" id="btn-science-code" class="px-4 py-2 bg-slate-900 text-slate-300 hover:text-white font-bold rounded-xl text-xs transition-all border border-slate-800">Demonstration Guide</button>
+                </div>
+
+                <!-- Overview Tab -->
+                <div id="tab-science-overview" class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="text-sm font-semibold text-amber-400 uppercase tracking-wider mb-2">Overview & Demonstration</h4>
+                        <p class="text-slate-300 text-sm leading-relaxed">
+                            Created physical classroom models and instructional demonstrations for Chapter 8 (Measurement of Time and Motion). Explained simple pendulum oscillations, amplitude behavior, and speed calculations using working speedometer and odometer visual models.
+                        </p>
+                    </div>
+                    <div>
+                        <h4 class="text-sm font-semibold text-amber-400 uppercase tracking-wider mb-2">Pedagogy & Core Concepts</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-slate-900 border border-slate-700 text-xs rounded-lg text-slate-300">Pendulum Mechanics</span>
+                            <span class="px-3 py-1 bg-slate-900 border border-slate-700 text-xs rounded-lg text-slate-300">Speedometers & Odometers</span>
+                            <span class="px-3 py-1 bg-slate-900 border border-slate-700 text-xs rounded-lg text-slate-300">Experiential STEM Teaching</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Code Tab -->
+                <div id="tab-science-code" class="hidden">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-xs text-slate-400 font-mono">class7_science_lesson_plan.txt</span>
+                        <button onclick="copyCode('code-science')" class="text-xs bg-slate-900 hover:bg-slate-800 text-amber-400 px-3 py-1 rounded-lg border border-slate-700"><i class="fa-regular fa-copy"></i> Copy Guide</button>
+                    </div>
+                    <div class="code-block p-4 rounded-xl text-xs overflow-x-auto border border-slate-800 max-h-96">
+<pre><code id="code-science">/*
+  Class 7 Science Chapter 8: Measurement of Time and Motion
+  Guest Teaching Presentation Outline & Experiment Guide
+  Presenter: Maha Saran
+*/
+
+1. OPENING HOOK (5 Minutes):
+   - Ask students how people measured time before wristwatches.
+
+2. SIMPLE PENDULUM DEMONSTRATION (15 Minutes):
+   - Hardware: Bob, string, and clamp stand.
+   - Core Concepts: Oscillation, Time Period, and Amplitude.
+
+3. SPEED, DISTANCE & TIME CALCULATIONS (10 Minutes):
+   - Formula: Speed = Distance / Time
+
+4. SPEEDOMETERS & ODOMETERS (10 Minutes):
+   - Display dashboard model showing instant speed and total distance.
+*/</code></pre>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+
+        <!-- Footer -->
+        <footer class="border-t border-slate-800 text-center py-8 text-slate-500 text-xs">
+            <p>Maha Saran Portfolio &bull; Built with Secure Access & Embedded Code Documentation &bull; 2026</p>
+        </footer>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        if (sessionStorage.getItem("portfolio_auth") === "true") {
+            document.getElementById("loginOverlay").classList.add("hidden");
+            const content = document.getElementById("portfolioContent");
+            content.classList.remove("hidden");
+            setTimeout(() => content.classList.remove("opacity-0"), 50);
+        }
+
+        function handleLogin(event) {
+            event.preventDefault();
+            const pass = document.getElementById("passwordInput").value;
+            if (pass === "mahasaran2026" || pass === "admin123") {
+                sessionStorage.setItem("portfolio_auth", "true");
+                document.getElementById("loginOverlay").classList.add("opacity-0", "transition-opacity", "duration-500");
+                setTimeout(() => {
+                    document.getElementById("loginOverlay").classList.add("hidden");
+                    const content = document.getElementById("portfolioContent");
+                    content.classList.remove("hidden");
+                    setTimeout(() => content.classList.remove("opacity-0"), 50);
+                }, 500);
+            } else {
+                document.getElementById("errorMsg").classList.remove("hidden");
+            }
+        }
+
+        function logout() {
+            sessionStorage.removeItem("portfolio_auth");
+            location.reload();
+        }
+
+        function switchTab(project, tab) {
+            const overviewTab = document.getElementById(`tab-${project}-overview`);
+            const codeTab = document.getElementById(`tab-${project}-code`);
+            const overviewBtn = document.getElementById(`btn-${project}-overview`);
+            const codeBtn = document.getElementById(`btn-${project}-code`);
+
+            const accentColors = {
+                agribot: 'bg-emerald-500 text-slate-950 shadow-md',
+                filteriq: 'bg-blue-500 text-slate-950 shadow-md',
+                roblox: 'bg-purple-500 text-slate-950 shadow-md',
+                science: 'bg-amber-500 text-slate-950 shadow-md'
+            };
+
+            if (tab === 'overview') {
+                overviewTab.classList.remove('hidden');
+                codeTab.classList.add('hidden');
+                overviewBtn.className = `px-4 py-2 ${accentColors[project]} font-bold rounded-xl text-xs transition-all`;
+                codeBtn.className = 'px-4 py-2 bg-slate-900 text-slate-300 hover:text-white font-bold rounded-xl text-xs transition-all border border-slate-800';
+            } else {
+                overviewTab.classList.add('hidden');
+                codeTab.classList.remove('hidden');
+                codeBtn.className = `px-4 py-2 ${accentColors[project]} font-bold rounded-xl text-xs transition-all`;
+                overviewBtn.className = 'px-4 py-2 bg-slate-900 text-slate-300 hover:text-white font-bold rounded-xl text-xs transition-all border border-slate-800';
+            }
+        }
+
+        function copyCode(elementId) {
+            const codeText = document.getElementById(elementId).innerText;
+            navigator.clipboard.writeText(codeText).then(() => {
+                alert("Code copied to clipboard successfully!");
+            });
+        }
+    </script>
+</body>
+</html>
